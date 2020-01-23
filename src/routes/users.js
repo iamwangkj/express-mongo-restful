@@ -2,29 +2,31 @@ const express = require('express')
 const router = express.Router()
 const userModel = require('../models/users')
 
+const format = (msg, data) => {
+  return {
+    msg: msg || '',
+    data: data || null
+  }
+}
+
 router.post('/', async (req, res) => {
   const { username, password } = req.body
   const adventure = await userModel.findOne({ username })
-  if (!adventure) {
+  if (adventure) {
+    return res.status(200).json(format('exist'))
+  }
+  else {
     const user = await userModel.create({
       username,
       password,
       name: ''
     })
-    return res.status(200).json(user)
+    return res.status(200).json(format('create', user))
   }
-  else {
-    return res.status(200).json({
-      msg: '已存在'
-    })
-  }
-
-
-
 })
 
 router.get('/', (req, res) => {
-  
+  res.status(403).end()
 })
 
 router.put('/', function (req, res) {
