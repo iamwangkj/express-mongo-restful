@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const mongoClient = require('mongodb').MongoClient
+const mongoClient = require('mongodb').mongoClient
 const dbUrl = 'mongodb://localhost:27017'
 
 const _checkUser = async (username) => {
@@ -12,7 +12,7 @@ const _checkUser = async (username) => {
       name: username
     })
     cursor.toArray((err, rows) => {
-      return rows.length>0
+      return rows.length > 0
     })
     cli.close()
   })
@@ -36,7 +36,6 @@ router.post('/', async (req, res, next) => {
     })
     cli.close()
     res.status(200).end()
-    
   })
 })
 
