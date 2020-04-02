@@ -1,8 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const mongoose = require('mongoose')
-const { dbUrl } = require('../config/db')
-const userModel = require('../models/users')
+const userModel = require('../models/User')
 const { formatRes } = require('../utils/format')
 const MSG = require('../constant/msg')
 
@@ -34,12 +32,12 @@ router.get('/', async (req, res) => {
 })
 
 // update user
-router.put('/', function (req, res) {
+router.put('/', (req, res) => {
   res.status(403).end()
 })
 
 // delete user
-router.delete('/', function (req, res) {
+router.delete('/', (req, res) => {
   res.status(403).end()
 })
 

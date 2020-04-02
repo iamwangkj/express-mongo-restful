@@ -10,7 +10,7 @@ const usersRouter = require('./routes/users')
 
 // 配置
 const port = process.env.PORT || 3000 // 设置启动端口
-// express-v4.16 支持：
+// express-v4.16 支持，不添加时解析不了请求的参数
 app.use(express.json()) // for parsing application/json
 app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 
@@ -24,7 +24,7 @@ app.use('/session', sessionRouter)
 app.use('/users', usersRouter)
 
 // catch 404 and forward to error handler
-app.use(function (req, res, next) {
+app.use((req, res, next) => {
   next(createError(404))
 })
 

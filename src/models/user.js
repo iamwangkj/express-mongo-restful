@@ -1,21 +1,15 @@
+const { connect, Schema, model } = require('mongoose')
+const { db } = require('../config')
 
-const user = {
-  add (req, res, next) {
-    // 获取前台页面传过来的参数
+connect(`${db}/express`, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
 
-  },
-  get (req, res, next) {
+const userSchema = new Schema({
+  username: { type: String },
+  password: { type: String },
+  name: { type: String }
+})
 
-  },
-  getAll (req, res, next) {
-
-  },
-  update (req, res, next) {
-
-  },
-  del (req, res, next) {
-
-  }
-}
-
-module.exports = user
+module.exports = model('User', userSchema)
