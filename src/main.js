@@ -2,7 +2,6 @@
 const express = require('express')
 const app = express()
 const morgan = require('morgan')
-const createError = require('http-errors')
 
 const indexRouter = require('./routes/index')
 const sessionRouter = require('./routes/session')
@@ -24,8 +23,8 @@ app.use('/session', sessionRouter)
 app.use('/users', usersRouter)
 
 // catch 404 and forward to error handler
-app.use((req, res, next) => {
-  next(createError(404))
+app.use((req, res) => {
+  res.status(404).end()
 })
 
 // 启动服务
