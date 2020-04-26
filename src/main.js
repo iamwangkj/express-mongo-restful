@@ -3,12 +3,13 @@ const express = require('express')
 const app = express()
 const morgan = require('morgan')
 
-const indexRouter = require('./routes/index')
-const registerRouter = require('./routes/register')
-const sessionRouter = require('./routes/session')
-const usersRouter = require('./routes/users')
 const { formatRes } = require('./utils/formatter')
+const index = require('./routes/index')
+const register = require('./routes/register')
+const login = require('./routes/login')
+const users = require('./routes/users')
 
+// 注册全局
 global.formatRes = formatRes
 
 // 配置
@@ -21,11 +22,11 @@ app.use(express.urlencoded({ extended: true })) // for parsing application/x-www
 app.use(morgan('dev'))
 
 // 路由
-app.use('/', indexRouter)
-app.use('/index', indexRouter)
-app.use('/register', registerRouter)
-// app.use('/session', sessionRouter)
-// app.use('/users', usersRouter)
+app.use('/', index)
+app.use('/index', index)
+app.use('/register', register)
+app.use('/login', login)
+app.use('/users', users)
 
 // catch 404 and forward to error handler
 app.use((req, res) => {
