@@ -11,7 +11,7 @@ router.post('/', async (req, res) => {
       username: name,
       password: pwd
     })
-    return res.status(200).json(global.formatRes(user)).end()
+    return res.status(200).json(global.formatRes('注册成功', user)).end()
   } catch (err) {
     console.error(err)
   }

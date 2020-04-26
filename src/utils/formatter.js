@@ -1,4 +1,4 @@
-const formatRes = (data = null, msg = 'ok') => {
+const formatRes = (msg = 'ok', data = {}) => {
   return {
     msg,
     data
